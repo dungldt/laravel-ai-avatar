@@ -21,6 +21,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+    ];
+
+    /**
+     * The attributes that are guards 
+     *
+     * @var array<int, string>
+     */
+    protected $guarded = [
     ];
 
     /**
