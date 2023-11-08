@@ -8,7 +8,12 @@
             {{ __("Add or Update user avatar") }}
         </p>
     </header>
-    <form method="post" action="{{ route('profile.avatar.update') }}">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    <form method="post" action="{{ route('profile.avatar.update') }}" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div>
