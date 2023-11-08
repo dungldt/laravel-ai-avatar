@@ -14,8 +14,8 @@ class AvatarController extends Controller
      */
     public function update(UpdateAvatarRequest $request): RedirectResponse
     {
-        $path = $request->file('avatar')->store('avatars');
-        auth()->user()->update(['avatar' => storage_path('app') . "/$path"]);
+        $path = $request->file('avatar')->store('avatars', 'public');
+        auth()->user()->update(['avatar' => $path]);
 
         return Redirect::route('profile.edit')->with('status', 'Avatar updated!');
     }
