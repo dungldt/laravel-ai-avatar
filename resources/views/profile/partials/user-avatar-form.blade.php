@@ -4,7 +4,9 @@
             {{ __('User avatar') }}
         </h2>
 
-        <img width="100" src="storage/{{$user->avatar}}" alt="user avatar">
+        @if ($user->avatar)
+            <img width="100" src="storage/{{$user->avatar}}" alt="user avatar">
+        @endif
 
         <p class="mt-1 text-sm text-gray-600">
             {{ __("Add or Update user avatar") }}
