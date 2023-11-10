@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Artisan;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,14 +47,16 @@ Route::post('/auth/redirect', function () {
 })->name('login.github');
  
 Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
-    $user = User::firstOrCreate(
+    $githubUser = Socialite::driver('github')->user();
+
+    $user = User::updateOrCreate(
         [
-            'email' => $user->email
+            'email' => $githubUser->email
         ],
         [
-            'name' => $user->email,
-            'password' => 'password'
+            'name' => $githubUser->nickname,
+            'email' => $githubUser->email,
+            'password' => Hash::make(Str::random(10))
         ]
     );
     Auth::login($user);
