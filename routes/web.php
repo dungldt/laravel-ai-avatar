@@ -5,6 +5,8 @@ use App\Http\Controllers\Profile\AvatarController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,11 +40,22 @@ Route::get('/linkstorage', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/auth/redirect', function () {
+Route::post('/auth/redirect', function () {
     return Socialite::driver('github')->redirect();
-});
+})->name('login.github');
  
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('github')->user();
-    dd($user);
+    $user = User::firstOrCreate(
+        [
+            'email' => $user->email
+        ],
+        [
+            'name' => $user->email,
+            'password' => 'password'
+        ]
+    );
+    Auth::login($user);
+
+    return redirect('dashboard');
 });
