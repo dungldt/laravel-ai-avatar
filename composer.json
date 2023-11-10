@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
+        "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.8",
         "openai-php/laravel": "^0.7.8"
     },
