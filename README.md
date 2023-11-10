@@ -17,7 +17,8 @@
 
 ## Features
 * Register user
-* Singin in
+* Login user
+* Login with github account
 * Edit profile
 * Change avatar by uploading an image
 * Change avatar by generating (AI generate)
