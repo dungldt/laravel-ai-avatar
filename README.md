@@ -1,7 +1,8 @@
 # Laravel & OpenAI generate avatar
 
 ## Demo
-![laravel-ai-generate](docs/images/laravel-ai-generate.png)
+<img src="docs/images/laravel-ai-generate.png" alt="laravel-ai-generate" width="250">
+
 ## Setup
 * Create a database locally named `laravel` utf8_general_ci 
 * Download composer https://getcomposer.org/download/
